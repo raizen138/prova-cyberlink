@@ -6,11 +6,14 @@
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='global.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src='main.js'></script>
 </head>
 <body>
     <div id="loginDiv">
         <form action="wsLogin.php" method="post">
+
+            <div id="error"></div>
         
             <div class="container">
             <label for="uname"><b>Username</b></label>
@@ -19,11 +22,11 @@
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
         
-            <button type="submit">Login</button>
+            <a id="loginBtn" class="button">Login</a>
             </div>
         
             <div class="container" style="background-color:#f1f1f1">
-            <span class="psw">Don't have an account? Register</span>
+            <span class="psw">Don't have an account? <a id="registerRedirect">Register</a></span>
             </div>
         </form>
     </div>
@@ -44,8 +47,7 @@
               <label for="psw-repeat"><b>Repeat Password</b></label>
               <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
               <hr>
-          
-              <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
               <button type="submit" class="registerbtn">Register</button>
             </div>
           
