@@ -1,7 +1,9 @@
 $(document).ready(function() {
 
     $("#loginBtn").on("click", logIn);
+    $("#registerBtn").on("click", register);
     $("#registerRedirect").on("click", changeToRegister);
+    $("#loginRedirect").on("click", changeToLogin);
 
 });
 
@@ -33,9 +35,43 @@ function logIn(){
 
 }
 
+function register(){
+
+    var username = $("input[name=uname]").val();
+    var pswd = $("input[name=psw]").val();
+
+    var dataSend = {
+        uname: username,
+        psw: pswd
+    };
+
+    $.ajax({
+        data: dataSend,
+        url: "wsLogin.php",
+        success: function(respuesta) { 
+            if(respuesta.user != -1){
+                $("#loginDiv").addClass("hidden");
+                $("#initialPage").removeClass("hidden");
+            }else{
+                $("error").append("<span>El usuario i/o contraseña es erroneo.</span>");
+            }
+        },
+        error: function() {
+          console.log("No se ha podido obtener la información");
+        }
+    });
+
+}
+
 function changeToRegister(){
     $("#loginDiv").addClass("hidden");
     $("#registerDiv").removeClass("hidden");
+
+}
+
+function changeToLogin(){
+    $("#loginDiv").removeClass("hidden");
+    $("#registerDiv").addClass("hidden");
 
 }
 
